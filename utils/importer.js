@@ -12,7 +12,7 @@ module.exports = {
       .forEach(f => {
         imports[f.slice(0, -3)] = require(`../${rp}/${f}`)
       });
-      return imports;
+    return imports;
   }
 }
 

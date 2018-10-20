@@ -18,5 +18,8 @@ module.exports = {
         process.exit(0);
       });
     });
+  },
+  isValidObjectId(t) {
+    return mongoose.Types.ObjectId.isValid(t);
   }
 };

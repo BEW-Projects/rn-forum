@@ -8,10 +8,10 @@ module.exports = {
       console.error(error.message);
     });
     mongoose.connection.on('connected', function() {
-      console.log(`Mongoose connected URI: ${dbURI}`);
+      console.log('\x1b[33m%s\x1b[0m', `Mongoose connected URI: ${dbURI}\n`);
     });
     mongoose.connection.on('disconnected', function() {
-      console.log(`Mongoose disconnected URI: ${dbURI}`);
+      console.log('\x1b[31m%s\x1b[0m', `\nMongoose disconnected URI: ${dbURI}`);
     });
     process.on('SIGINT', function() {
       mongoose.connection.close(function() {

@@ -16,7 +16,7 @@ const ThreadSchema = mongoose.Schema({
   },
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true.
+    required: true,
     ref: 'User'
   },
   locked: {

@@ -12,7 +12,7 @@ const CategorySchema = mongoose.Schema({
   },
   authorId: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true.
+    required: true,
     ref: 'User'
   },
   color: {

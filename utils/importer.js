@@ -15,3 +15,16 @@ module.exports = {
       return imports;
   }
 }
+
+module.exports.progress = {
+  start(name, count) {
+    console.log('\x1b[36m%s\x1b[0m', `\nImporting ${count} ${name}:\n`);
+  },
+  update(name) {
+    process.stdout.cursorTo(1);
+    console.log('\x1b[2m%s\x1b[0m', `\u2714 ${name}\n`);
+  },
+  end(name) {
+    console.log('\x1b[32m%s\x1b[0m', `Imported ${name} successfully!\n`);
+  }
+}

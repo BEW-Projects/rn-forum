@@ -14,16 +14,15 @@ app.use(express.urlencoded({
 }));
 
 // Make sure we aren't passing in any of our destructured imports from the controllers
-var imports = {}
 for (var i in controllers) {
-  if (Object.getPrototypeOf(controllers[i]) == express.Router) {
-    imports[i] = controllers[i];
+  if (Object.getPrototypeOf(controllers[i]) != express.Router) {
+    delete controllers[i];
   }
 }
 
-importer.progress.start('controllers', Object.keys(imports).length);
-for (var i in imports) {
-    app.use(imports[i]);
+importer.progress.start('controllers', Object.keys(controllers).length);
+for (var i in controllers) {
+    app.use(controllers[i]);
     importer.progress.update(i);
 }
 importer.progress.end('controllers');

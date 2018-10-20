@@ -12,7 +12,7 @@ module.exports = function(paths) {
             return next();
           }
           res.status(400);
-          return next(new Error(`Invalid value for query term _id - ${req.query._id}`));
+          return next(new Error(`Invalid value for query term _id - ${req.originalUrl}`));
         }
       }
     }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dbURI = process.env.MONGODB || `mongodb://localhost/${process.env.npm_package_name}`
+const dbURI = process.env.MONGODB || `mongodb://localhost/${process.env.npm_package_name}`;
 
 module.exports = {
   connect() {

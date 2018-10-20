@@ -12,7 +12,15 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(controllers);
+for (var i in controllers) {
+
+  // Make sure we aren't passing in any of our destructured imports from the controllers
+  if (Object.getPrototypeOf(controllers[i]) == express.Router) {
+    console.log(`Importing ${i} controller`);
+    app.use(controllers[i]);
+  }
+  
+}
 app.use(notfound);
 
 module.exports = app;

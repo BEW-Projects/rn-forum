@@ -1,10 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const imports = {};
-
-module.exports = {
-  importer(fn) {
+module.exports = function(fn) {
+    let imports = {};
     let rp = path.dirname(fn).substr(path.dirname(fn).lastIndexOf('/') + 1);
     fs
       .readdirSync(path.dirname(fn))
@@ -13,7 +11,6 @@ module.exports = {
         imports[f.slice(0, -3)] = require(`../${rp}/${f}`)
       });
     return imports;
-  }
 }
 
 module.exports.progress = {

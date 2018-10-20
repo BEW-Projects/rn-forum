@@ -1,9 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const controllers = require('./controllers');
-const notfound = require('./utils/notfound');
-const importer = require('./utils/importer');
-const db = require('./utils/db');
+const { db, importer } = require('./utils');
+const { notFoundHandler, errorHandler } = require('./middlewares');
 const app = express();
 
 const dbConnection = db.connect();
@@ -27,6 +26,8 @@ for (var i in controllers) {
 }
 importer.progress.end('controllers');
 
-app.use(notfound);
+app.use(notFoundHandler);
+
+app.use(errorHandler);
 
 module.exports = app;

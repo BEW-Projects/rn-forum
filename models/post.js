@@ -27,7 +27,7 @@ PostSchema.pre('save', function() {
 })
 
 PostSchema.statics.postCount = function() {
-  this.find().then(res => return res.length);
+  this.find().then(res => { return res.length });
 }
 
 

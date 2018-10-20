@@ -11,12 +11,17 @@ const ThreadSchema = mongoose.Schema({
   },
   postCount: {
     type: Number,
-    required: false,
+    required: true,
     default: 0
+  },
+  authorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true.
+    ref: 'User'
   },
   locked: {
     type: Boolean,
-    required: false,
+    required: true,
     default: false
   }
 }, { timestamps: true });

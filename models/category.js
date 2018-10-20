@@ -7,8 +7,13 @@ const CategorySchema = mongoose.Schema({
   },
   weight: {
     type: Number,
-    required: false,
+    required: true,
     default: 0
+  },
+  authorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true.
+    ref: 'User'
   },
   color: {
     type: String,

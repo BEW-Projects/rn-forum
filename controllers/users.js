@@ -4,7 +4,7 @@ const { user } = require('../models');
 
 // routes below
 router.route('/users')
-  .all(authorizedHandler, validQueryHandler(Object.keys(category.schema.paths)))
+  .all(authorizedHandler, validQueryHandler(Object.keys(user.schema.paths)))
   .get((req, res, next) => {
     if(Object.keys(req.query).length == 0) {
       user.find().lean().then(users => {

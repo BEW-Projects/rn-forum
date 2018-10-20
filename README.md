@@ -8,6 +8,7 @@ An Interactive Forum in React Native with an Express backend using MongoDB.
 npm i
 npm run dev
 ```
+Make sure that you have the latest version of [MongoDB](https://www.mongodb.com/download-center) installed and running!
 
 ### Client :computer:
 ```sh

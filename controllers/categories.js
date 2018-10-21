@@ -5,7 +5,7 @@ const { category } = require('../models');
 
 // routes below
 router.route('/categories')
-  .all(authorizedHandler, validQueryHandler(Object.keys(category.schema.paths)))
+  .all(authorizedHandler(3), validQueryHandler(Object.keys(category.schema.paths)))
   .get((req, res, next) => {
     if(Object.keys(req.query).length == 0) {
       category.find().lean().then(categories => {

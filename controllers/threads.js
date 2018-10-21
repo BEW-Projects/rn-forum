@@ -5,7 +5,7 @@ const { thread } = require('../models');
 
 // routes below
 router.route('/threads')
-  .all(authorizedHandler, validQueryHandler(Object.keys(thread.schema.paths)))
+  .all(authorizedHandler(3), validQueryHandler(Object.keys(thread.schema.paths)))
   .get((req, res, next) => {
     if(Object.keys(req.query).length == 0) {
       thread.find().lean().then(threads => {

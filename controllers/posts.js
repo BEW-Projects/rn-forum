@@ -5,7 +5,7 @@ const { post } = require('../models');
 
 // routes below
 router.route('/posts')
-  .all(authorizedHandler, validQueryHandler(Object.keys(post.schema.paths)))
+  .all(authorizedHandler(3), validQueryHandler(Object.keys(post.schema.paths)))
   .get((req, res, next) => {
     if(Object.keys(req.query).length == 0) {
       post.find().lean().then(posts => {

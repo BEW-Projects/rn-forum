@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { authorizedHandler, validQueryHandler } = require('../middlewares');
+const { db } = require('../utils');
 const { post } = require('../models');
 
 // routes below
@@ -11,7 +12,8 @@ router.route('/posts')
         res.json(posts);
       })
     } else {
-      post.find(req.query).lean().then(posts => {
+      let query = db.queryToAndDbQuery(req.query);
+      post.find(query).lean().then(posts => {
         res.json(posts);
       })
     }

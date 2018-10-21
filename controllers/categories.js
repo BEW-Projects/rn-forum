@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { authorizedHandler, validQueryHandler } = require('../middlewares');
+const { db } = require('../utils');
 const { category } = require('../models');
 
 // routes below
@@ -11,7 +12,8 @@ router.route('/categories')
         res.json(categories);
       })
     } else {
-      category.find(req.query).lean().then(categories => {
+      let query = db.queryToAndDbQuery(req.query);
+      category.find(query).lean().then(categories => {
         res.json(categories);
       })
     }

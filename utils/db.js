@@ -21,5 +21,8 @@ module.exports = {
   },
   isValidObjectId(t) {
     return mongoose.Types.ObjectId.isValid(t);
+  },
+  queryToAndDbQuery(q) {
+    return {$and: Object.keys(q).map(k=>{return{[k]:q[k]}})};
   }
 };

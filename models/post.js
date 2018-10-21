@@ -22,13 +22,8 @@ const PostSchema = mongoose.Schema({
   }
 }, { timestamps: true });
 
-PostSchema.pre('save', function() {
-  this.postNumber = this.postCount() + 1;
+PostSchema.pre('save', async function() {
+  this.postNumber = await this.constructor.count() + 1;
 })
-
-PostSchema.statics.postCount = function() {
-  this.find().then(res => { return res.length });
-}
-
 
 module.exports = mongoose.model('Post', PostSchema);

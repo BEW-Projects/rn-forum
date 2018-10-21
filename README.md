@@ -1,4 +1,4 @@
-# rn-forum
+# rn-forum [![Build Status](https://travis-ci.com/BEW-Projects/rn-forum.svg?branch=master)](https://travis-ci.com/BEW-Projects/rn-forum)
 An Interactive Forum in React Native with an Express backend using MongoDB.
 
 ## :wrench: Development Setup :wrench:

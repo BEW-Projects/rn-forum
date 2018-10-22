@@ -10,11 +10,9 @@ chai.use(chaiHttp);
 
 // create our testThread
 const testThread = {
-  name: 'testname',
+  name: 'chaiTestThread',
   slug: 'www.test.io',
-  postCount: 2,
-  author: mongoose.Types.ObjectId(),
-  locked: true
+  author: mongoose.Types.ObjectId()
 };
 
 // start our tests
@@ -22,7 +20,7 @@ describe('Threads', () => {
 
   // delete test threads after testing completed
   after(async () => {
-    await thread.deleteMany({ name: 'testname' })
+    await thread.deleteMany({ name: 'chaiTestThread' })
   })
 
   // get all test
@@ -41,21 +39,22 @@ describe('Threads', () => {
   });
 
   // create one test
-  it('should return json for request at /threads?_id= CREATE', async () => {
+  it('should return json for request at /threads?_id= POST', async () => {
     const res = await chai.request(server).post(`/threads`).send(testThread);
     res.should.have.status(200);
     res.should.be.json;
   });
 
   // update one test
-  it('should return json for request at /threads?_id= UPDATE', async () => {
+  it('should return json for request at /threads?_id= PUT', async () => {
     const newThread = await thread.create(testThread);
     const updates = {
-      locked: false
+      locked: true
     };
     const res = await chai.request(server).put(`/threads?_id=${newThread._id}`).send(updates);
     res.should.have.status(200);
     res.should.be.json;
+    res.body.locked.should.equal(true);
   });
 
   // delete one test

@@ -12,5 +12,8 @@ Make sure that you have the latest version of [MongoDB](https://www.mongodb.com/
 
 ### Client :computer:
 ```sh
-TBD
+cd client
+npm i
+npm run start-web  # starts web client
+npm start  # starts mobile client
 ```

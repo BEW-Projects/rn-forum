@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "test": "mocha --exit tests/*/**"
+    "test": "mocha --exit tests/*/**",
+    "dev-web-client": "cd client && npm run start-web",
+    "dev-mobile-client": "cd client && npm run start"
   },
   "dependencies": {
     "debug": "~2.6.9",

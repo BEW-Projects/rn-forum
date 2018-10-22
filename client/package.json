@@ -8,8 +8,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "start-web": "react-scripts start",
-    "build-web": "react-scripts build",
-    "test": ""
+    "build-web": "react-scripts build"
   },
   "dependencies": {
     "expo": "^30.0.1",

@@ -53,6 +53,7 @@ describe('Posts', () => {
     const res = await chai.request(server).put(`/posts?_id=${newPost._id}`).send(updates);
     res.should.have.status(200);
     res.should.be.json;
+    res.body.removed.should.equal(true);
   });
 
   // delete one test

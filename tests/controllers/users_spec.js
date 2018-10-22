@@ -12,35 +12,14 @@ chai.use(chaiHttp);
 const testUser = {
   username: 'testuser',
   password: 'test111',
-  email: 'test@test.com',
-  role: 0
+  email: 'test@test.com'
 };
 
-const testUser2 = {
-  username: 'testuser2',
-  password: 'test2222',
-  email: 'test2@test.com',
-  role: 0
-};
-
-const testUser3 = {
-  username: 'testuser3',
-  password: 'test3333',
-  email: 'test3@test.com',
-  role: 0
-};
-
-const testUser4 = {
-  username: 'testuser4',
-  password: 'test4444',
-  email: 'test4@test.com',
-  role: 0
-};
 // start our tests
 describe('Users', () => {
 
-  // delete test user after testing completed
-  after(async () => {
+  // delete test users after testing completed
+  afterEach(async () => {
     await user.deleteMany({ username: 'testuser' })
   })
 
@@ -60,27 +39,27 @@ describe('Users', () => {
   });
 
   // create one test
-  it('should return json for request at /users?_id= CREATE', async () => {
-    const res = await
-    chai.request(server).post(`/users`).send(testUser2);
+  it('should return json for request at /users?_id= POST', async () => {
+    const res = await chai.request(server).post(`/users`).send(testUser);
     res.should.have.status(200);
     res.should.be.json;
   });
 
   // update one test
-  it('should return json for request at /users?_id= UPDATE', async () => {
-    const newUser = await user.create(testUser3);
+  it('should return json for request at /users?_id= PUT', async () => {
+    const newUser = await user.create(testUser);
     const updates = {
-      removed: true
+      role: 2
     };
     const res = await chai.request(server).put(`/users?_id=${newUser._id}`).send(updates);
     res.should.have.status(200);
     res.should.be.json;
+    res.body.role.should.equal(2);
   });
 
   // delete one test
   it('should return json for request at /users?_id= DELETE', async () => {
-    const newUser = await user.create(testUser4);
+    const newUser = await user.create(testUser);
     const res = await chai.request(server).delete(`/users?_id=${newUser._id}`);
     res.should.have.status(200);
     res.should.be.json;

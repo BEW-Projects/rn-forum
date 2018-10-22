@@ -5,7 +5,7 @@ const { db, importer } = require('./utils');
 const { notFoundHandler, errorHandler } = require('./middlewares');
 const app = express();
 
-const dbConnection = db.connect();
+const dbConnection = db.connect();//
 
 app.use(express.json());
 app.use(express.urlencoded({

@@ -10,8 +10,7 @@ chai.use(chaiHttp);
 
 // create our testCategory
 const testCategory = {
-  name: 'testname',
-  weight: 2,
+  name: 'chaiTestCategory',
   author: mongoose.Types.ObjectId(),
   color: 'blue'
 };
@@ -21,7 +20,7 @@ describe('Categories', () => {
 
   // delete test categories after testing completed
   after(async () => {
-    await category.deleteMany({ name: 'testname' })
+    await category.deleteMany({ name: 'chaiTestCategory' })
   })
 
   // get all test
@@ -40,7 +39,7 @@ describe('Categories', () => {
   });
 
   // create one test
-  it('should return json for request at /categories?_id= CREATE', async () => {
+  it('should return json for request at /categories?_id= POST', async () => {
     const res = await chai.request(server).post(`/categories`).send(testCategory);
     res.should.have.status(200);
     res.should.be.json;
@@ -55,6 +54,7 @@ describe('Categories', () => {
     const res = await chai.request(server).put(`/categories?_id=${newCategory._id}`).send(updates);
     res.should.have.status(200);
     res.should.be.json;
+    res.body.weight.should.equal(3);
   });
 
   // delete one test

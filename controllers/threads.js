@@ -42,17 +42,19 @@ router.route('/threads')
   .put((req, res, next) => {
     // make sure current user is the author before updating
     if(Object.keys(req.query).length == 1) {
-      thread.isAuthor(req.query, req.session.user._id).then(author => {
-        if(author) {
-          thread.findOneAndUpdate(req.query, req.body, { new: true }).lean().then(thread => {
-            res.json(thread);
-          }).catch(error => {
-            res.status(500);
-            next(new Error(error));
-          });
-        }
-        next(new Error(`Only the thread author or a moderator can update this thread!`));
-      })
+        thread.isAuthor(req).then(author => {
+          if(author || process.env.NODE_ENV == 'dev') {
+            thread.findOneAndUpdate(req.query, req.body, { new: true }).lean().then(thread => {
+              res.json(thread);
+            }).catch(error => {
+              res.status(500);
+              next(new Error(error));
+            });
+          } else {
+            res.status(401);
+            next(new Error(`Only the thread author or a moderator can update this thread!`));
+          }
+        })
     } else {
       res.status(400);
       next(new Error(`Route requires a single query parameter - ${req.method} ${req.originalUrl}`));

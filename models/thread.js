@@ -27,8 +27,9 @@ const ThreadSchema = mongoose.Schema({
 }, { timestamps: true });
 
 // determine if logged in user is author
-ThreadSchema.statics.isAuthor = async function(query, userId) {
-  const thread = await this.find({ $and: [{ author: userId }, query] });
+ThreadSchema.statics.isAuthor = async function(req) {
+  if(!req.session.user || !req.query) return false;
+  const thread = await this.find({ $and: [{ author: req.session.user._id }, req.query] });
   if(thread.length > 0) {
     return true;
   }

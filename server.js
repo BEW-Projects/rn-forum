@@ -1,3 +1,5 @@
+var env = process.env.NODE_ENV || 'dev';
+if(env == 'dev') process.env.NODE_ENV = 'dev';
 require('dotenv').config();
 const express = require('express');
 const controllers = require('./controllers');

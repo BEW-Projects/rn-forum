@@ -7,7 +7,7 @@ const { user } = require('../models');
 router.route('/users')
 
   // all routes should run these middlewares first
-  .all(authorizedHandler(3), validQueryHandler(Object.keys(user.schema.paths)))
+  .all(authorizedHandler(0), validQueryHandler(Object.keys(user.schema.paths)))
 
   // GET/READ
   .get((req, res, next) => {

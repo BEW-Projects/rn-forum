@@ -41,6 +41,7 @@ UserSchema.statics.authenticate = async function(email, password) {
   if(user.length > 0) {
     const match = await bcrypt.compare(password, user[0].password);
     if(match) {
+      delete user[0].password;
       return user[0];
     }
     return Promise.reject(`Invalid Password.`);

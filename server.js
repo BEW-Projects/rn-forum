@@ -5,7 +5,7 @@ const { db, importer } = require('./utils');
 const { notFoundHandler, errorHandler } = require('./middlewares');
 const app = express();
 
-const dbConnection = db.connect();//
+const dbConnection = db.connect();
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -21,7 +21,7 @@ for (var i in controllers) {
 
 importer.progress.start('controllers', Object.keys(controllers).length);
 for (var i in controllers) {
-    app.use('/api', controllers[i]);
+    app.use(controllers[i]);
     importer.progress.update(i);
 }
 importer.progress.end('controllers');

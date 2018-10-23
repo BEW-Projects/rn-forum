@@ -29,7 +29,9 @@ class Header extends Component {
               <FormControl type="password" placeholder="Password" />
             </FormGroup>{' '}
             <Button bsStyle="success" type="submit">Login</Button>
-            <Button bsStyle="primary" type="button">Sign Up</Button>
+            <LinkContainer to="/signup">
+              <Button bsStyle="primary" type="button">Sign Up</Button>
+            </LinkContainer>
           </Navbar.Form>
           </Nav>
         </Navbar.Collapse>

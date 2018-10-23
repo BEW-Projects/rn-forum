@@ -33,7 +33,7 @@ const UserSchema = mongoose.Schema({
 // custom validators
 UserSchema.path('email').validate(function(v) {
   return validator.isEmail(v);
-})
+});
 
 // authenticate a user
 UserSchema.statics.authenticate = async function(email, password) {
@@ -47,5 +47,10 @@ UserSchema.statics.authenticate = async function(email, password) {
   }
   return new Error(`Invalid Password.`);
 }
+
+// hash the password before saving a new user
+UserSchema.pre('save', async function() {
+  this.password = await bcrypt.hash(this.password, 10);
+});
 
 module.exports = mongoose.model('User', UserSchema);

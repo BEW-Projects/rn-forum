@@ -1,11 +1,26 @@
 require('dotenv').config();
 const express = require('express');
 const controllers = require('./controllers');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 const { db, importer } = require('./utils');
 const { notFoundHandler, errorHandler } = require('./middlewares');
 const app = express();
 
 const dbConnection = db.connect();
+
+// setup express session
+app.use(session({
+    secret: 'juicyrainbowbunny007',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1800000  // 30 minutes
+    },
+    store: new MongoStore({
+        mongooseConnection: dbConnection
+    })
+}));
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -27,7 +42,6 @@ for (var i in controllers) {
 importer.progress.end('controllers');
 
 app.use(notFoundHandler);
-
 app.use(errorHandler);
 
 module.exports = app;

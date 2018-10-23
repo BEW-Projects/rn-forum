@@ -74,4 +74,31 @@ router.route('/users')
     }
   });
 
+  // get current logged in user
+  router.get(`/users/current`, (req, res, next) => {
+    if(req.session.user) {
+      res.json(req.session.user);
+    } else {
+      res.status(401);
+      next(new Error(`You are not currently logged in! Please login again.`));
+    }
+  });
+
+  // login user and set session
+  router.post(`/users/login`, (req, res, next) => {
+    user.authenticate(req.body.email, req.body.password).then(user => {
+      req.session.user = user;
+      res.json(user);
+    }).catch(error => {
+      res.status(401);
+      next(new Error(error));
+    });
+  });
+
+  // logout user by destroying session
+  router.post(`/users/logout`, (req, res, next) => {
+    req.session.destroy();
+    res.send();
+  });
+
 module.exports = router;

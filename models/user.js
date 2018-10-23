@@ -38,14 +38,14 @@ UserSchema.path('email').validate(function(v) {
 // authenticate a user
 UserSchema.statics.authenticate = async function(email, password) {
   const user = await this.find({ email: email }).limit(1).lean();
-  if(user.length == 0) {
-    return new Error(`Email not found.`);
+  if(user.length > 0) {
+    const match = await bcrypt.compare(password, user[0].password);
+    if(match) {
+      return user[0];
+    }
+    return Promise.reject(`Invalid Password.`);
   }
-  const match = await bcrypt.compare(password, user[0].password);
-  if(match) {
-    return user[0];
-  }
-  return new Error(`Invalid Password.`);
+  return Promise.reject(`Email not found.`);
 }
 
 // hash the password before saving a new user

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import logo from './assets/logo.svg';
 import './assets/stylesheets/Forum.css';
 
@@ -14,6 +15,7 @@ class Forum extends Component {
             Forum
           </p>
         </header>
+        <Footer />
       </div>
     );
   }

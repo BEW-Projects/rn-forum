@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, ControlLabel, FormControl, HelpBlock, Button } from 'react-bootstrap';
 
 class Header extends Component {
   render() {
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar inverse collapseOnSelect fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
             <LinkContainer to="/">
@@ -23,11 +23,14 @@ class Header extends Component {
             </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavDropdown title="User" id="basic-nav-dropdown">
-              <MenuItem>Profile</MenuItem>
-              <MenuItem divider />
-              <MenuItem>Logout</MenuItem>
-            </NavDropdown>
+          <Navbar.Form pullLeft>
+            <FormGroup>
+              <FormControl type="text" placeholder="Email" />
+              <FormControl type="password" placeholder="Password" />
+            </FormGroup>{' '}
+            <Button bsStyle="success" type="submit">Login</Button>
+            <Button bsStyle="primary" type="button">Sign Up</Button>
+          </Navbar.Form>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

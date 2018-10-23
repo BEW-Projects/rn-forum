@@ -87,4 +87,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log('\x1b[33m%s\x1b[0m', `Express listening for requests on ${bind}\n`);
 }

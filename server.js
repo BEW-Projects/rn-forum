@@ -21,7 +21,7 @@ for (var i in controllers) {
 
 importer.progress.start('controllers', Object.keys(controllers).length);
 for (var i in controllers) {
-    app.use(controllers[i]);
+    app.use('/api', controllers[i]);
     importer.progress.update(i);
 }
 importer.progress.end('controllers');

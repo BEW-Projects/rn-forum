@@ -7,7 +7,7 @@ const { post } = require('../models');
 router.route('/posts')
 
   // all routes should run these middlewares first
-  .all(authorizedHandler(3), validQueryHandler(Object.keys(post.schema.paths)))
+  .all(authorizedHandler(0), validQueryHandler(Object.keys(post.schema.paths)))
 
   // GET/READ
   .get((req, res, next) => {

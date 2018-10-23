@@ -7,10 +7,10 @@ const { user } = require('../models');
 router.route('/users')
 
   // all routes should run these middlewares first
-  .all(authorizedHandler(0), validQueryHandler(Object.keys(user.schema.paths)))
+  .all(validQueryHandler(Object.keys(user.schema.paths)))
 
   // GET/READ
-  .get((req, res, next) => {
+  .get(authorizedHandler(3), (req, res, next) => {
     if(Object.keys(req.query).length == 0) {
       user.find().lean().then(users => {
         res.json(users);
@@ -45,7 +45,7 @@ router.route('/users')
   })
 
   // PUT/UPDATE
-  .put((req, res, next) => {
+  .put(authorizedHandler(3), (req, res, next) => {
     if(Object.keys(req.query).length == 1) {
       user.findOneAndUpdate(req.query, req.body, { new: true }).lean().then(user => {
         res.json(user);
@@ -60,7 +60,7 @@ router.route('/users')
   })
 
   // DELETE/REMOVE
-  .delete((req, res, next) => {
+  .delete(authorizedHandler(3), (req, res, next) => {
     if(Object.keys(req.query).length == 1) {
       user.findOneAndDelete(req.query).lean().then(user => {
         res.json(user);

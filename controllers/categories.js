@@ -7,7 +7,7 @@ const { category } = require('../models');
 router.route('/categories')
 
   // all routes should run these middlewares first
-  .all(authorizedHandler(3), validQueryHandler(Object.keys(category.schema.paths)))
+  .all(authorizedHandler(0), validQueryHandler(Object.keys(category.schema.paths)))
 
   // GET/READ
   .get((req, res, next) => {

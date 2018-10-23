@@ -47,7 +47,7 @@ UserSchema.statics.authenticate = async function(email, password) {
     return Promise.reject(`Invalid Password.`);
   }
   return Promise.reject(`Email not found.`);
-}
+} 
 
 // hash the password before saving a new user
 UserSchema.pre('save', async function() {

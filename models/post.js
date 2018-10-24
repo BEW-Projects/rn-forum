@@ -15,6 +15,11 @@ const PostSchema = mongoose.Schema({
     required: true,
     ref: 'User'
   },
+  thread: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'Thread'  
+  },
   removed: {
     type: Boolean,
     required: true,

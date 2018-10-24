@@ -27,8 +27,8 @@ const UserSchema = mongoose.Schema({
     enum: [0, 1, 2, 3],
     required: true,
     default: 0   // 0 - User, 1 - Moderator, 2 - Developer, 3 - Administrator
-  }
-});
+}
+}, { timestamps: true });
 
 // custom validators
 UserSchema.path('email').validate(function(v) {
@@ -47,7 +47,7 @@ UserSchema.statics.authenticate = async function(email, password) {
     return Promise.reject(`Invalid Password.`);
   }
   return Promise.reject(`Email not found.`);
-} 
+}
 
 // hash the password before saving a new user
 UserSchema.pre('save', async function() {

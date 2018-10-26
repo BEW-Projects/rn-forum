@@ -3,6 +3,16 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 
 const UserSchema = mongoose.Schema({
+ firstname: {
+     type: String,
+     required: true,
+     minlength: 2
+ },
+ lastname: {
+     type: String,
+     required: true,
+     minlength: 2
+ },
   username: {
     type: String,
     required: true,
@@ -27,7 +37,17 @@ const UserSchema = mongoose.Schema({
     enum: [0, 1, 2, 3],
     required: true,
     default: 0   // 0 - User, 1 - Moderator, 2 - Developer, 3 - Administrator
-}
+}, accountstatus: {
+    type: 'String',
+    required: true,
+    default: 'active'
+}, statusreason: {
+    type: 'String',
+    required: true
+}, statusexpire: {
+    type: Date,
+    required: true
+},
 }, { timestamps: true });
 
 // custom validators

@@ -10,9 +10,15 @@ chai.use(chaiHttp);
 
 // create our testUser
 const testUser = {
+  firstname: 'test',
+  lastname: 'test',
   username: 'testuser',
   password: 'test111',
-  email: 'test@test.com'
+  email: 'test@test.com',
+  role: 1,
+  accountstatus: 'active',
+  statusreason: 'test',
+  statusexpire: '10/30/2018'
 };
 
 // start our tests

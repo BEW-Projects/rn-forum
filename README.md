@@ -1,5 +1,5 @@
 # rn-forum [![Build Status](https://travis-ci.com/BEW-Projects/rn-forum.svg?branch=master)](https://travis-ci.com/BEW-Projects/rn-forum)
-An Interactive Forum in React Native with an Express backend using MongoDB.
+An Interactive Forum in React with an Express backend using MongoDB.
 
 ## :wrench: Development Setup :wrench:
 
@@ -14,6 +14,5 @@ Make sure that you have the latest version of [MongoDB](https://www.mongodb.com/
 ```sh
 cd client
 npm i
-npm run start-web  # starts web client
-npm start  # starts mobile client
+npm start 
 ```

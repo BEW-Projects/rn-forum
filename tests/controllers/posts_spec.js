@@ -11,7 +11,8 @@ chai.use(chaiHttp);
 // create our testPost
 const testPost = {
   content: 'chaiTestPost',
-  author: mongoose.Types.ObjectId()
+  author: mongoose.Types.ObjectId(),
+  thread: mongoose.Types.ObjectId()
 };
 
 // start our tests

@@ -12,7 +12,8 @@ chai.use(chaiHttp);
 const testThread = {
   name: 'chaiTestThread',
   slug: 'www.test.io',
-  author: mongoose.Types.ObjectId()
+  author: mongoose.Types.ObjectId(),
+  category: mongoose.Types.ObjectId()
 };
 
 // start our tests

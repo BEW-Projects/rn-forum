@@ -26,4 +26,14 @@ module.exports = {
   queryToAndDbQuery(q) {
     return {$and: Object.keys(q).map(k=>{return{[k]:q[k]}})};
   }
+
+  // const isAuthor = async function(req) {
+  //   if(!req.session.user || !req.query) return false;
+  //   const user = await this.find({ $and: [{ author: req.session.user._id }, req.query] });
+  //   if(thread.length > 0) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
 };

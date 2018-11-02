@@ -19,6 +19,12 @@ const ThreadSchema = mongoose.Schema({
     required: true,
     ref: 'User'
   },
+  category: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'Category'
+
+  },
   locked: {
     type: Boolean,
     required: true,
